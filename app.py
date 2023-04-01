@@ -47,12 +47,27 @@ def index():
         print("помилка при читанні")
     return render_template("index.html", list=info)
 
-
+"""
+<table>
+        <tr>
+            <td>Login</td>
+            <td><input type="text" name="login"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+            <td><a href="{{ url_for('register') }}">Register</a></td>
+            <td><input type="submit" value="Login"></td>
+        </tr>
+    </table>
+"""
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     if request.method == 'POST':
-        email = request.form.get('email')
-        psw = request.form.get('psw')
+        email = request.form.get('login') ###
+        psw = request.form.get('password') ###
 
         if email and psw:
             user = Users.query.filter_by(email=email).first()
